@@ -6,6 +6,6 @@ excerpt: "NextJs is the react framework for production"
 isFeatured: true
 ---
 
-# Tis is a title
+# This is a title
 
 This is some regular text with a [link](https://google.com)
