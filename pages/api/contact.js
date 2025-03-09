@@ -1,4 +1,4 @@
-function handler() {
+function handler(req, res) {
   if (req.method === "POST") {
     const { email, name, message } = req.body;
 
@@ -23,3 +23,5 @@ function handler() {
     res.status(201).json({ message: "Success", message: newMessage });
   }
 }
+
+export default handler;
