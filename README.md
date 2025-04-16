@@ -1,35 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blog-app
 
-## Getting Started
+Blog-app to aplikacja blogowa stworzona przy użyciu [Next.js](https://nextjs.org/). Projekt umożliwia publikowanie postów, wyświetlanie ich szczegółów oraz wysyłanie wiadomości za pomocą formularza kontaktowego.
 
-First, run the development server:
+## Funkcjonalności
 
-```bash
-npm run dev
-# or
-yarn dev
+- **Wyświetlanie postów**: Lista wszystkich postów oraz wyróżnionych postów na stronie głównej.
+- **Szczegóły postów**: Strony szczegółowe dla każdego posta, renderowane na podstawie plików Markdown.
+- **Formularz kontaktowy**: Możliwość wysyłania wiadomości, które są zapisywane w bazie danych MongoDB.
+- **Responsywny design**: Stylizacja z użyciem CSS Modules i zmiennych CSS.
+
+## Technologie
+
+- **Next.js**: Framework Reacta z obsługą SSR i SSG.
+- **React**: Biblioteka do budowy interfejsów użytkownika.
+- **MongoDB**: Baza danych do przechowywania wiadomości z formularza kontaktowego.
+- **Gray-matter**: Parser plików Markdown do ekstrakcji metadanych.
+- **React Markdown**: Renderowanie treści Markdown w React.
+- **React Syntax Highlighter**: Podświetlanie składni w kodzie.
+
+## Struktura projektu
+
+- `components/`: Komponenty Reacta, takie jak nawigacja, posty, formularz kontaktowy.
+- `pages/`: Strony aplikacji, w tym dynamiczne strony postów i API.
+- `lib/`: Funkcje pomocnicze, np. do obsługi plików Markdown.
+- `posts/`: Pliki Markdown z treścią postów.
+- `styles/`: Globalne style CSS.
+
+## Jak uruchomić projekt?
+
+1. Zainstaluj zależności:
+
+   ```bash
+   npm install
+   ```
+
+2. Uruchom serwer deweloperski:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce.
+
+## Konfiguracja bazy danych
+
+Aby aplikacja mogła zapisywać wiadomości z formularza kontaktowego, skonfiguruj połączenie z MongoDB w pliku `.env.local`:
+
+```
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Aplikację można wdrożyć na platformie [Vercel](https://vercel.com/), która jest natywnym środowiskiem dla Next.js.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Autor
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Projekt został stworzony przez Jana Banczerowskiego.
 
-## Learn More
+## Licencja
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# Blog-app
+Ten projekt jest dostępny na licencji MIT.
