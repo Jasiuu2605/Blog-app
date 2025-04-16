@@ -25,9 +25,7 @@ async function handler(req, res) {
     let client;
 
     try {
-      client = await MongoClient.connect(
-        "mongodb+srv://jasiuu2605:pdTPM5cbNEz4TCN9@blog.1csni.mongodb.net/blog-app?retryWrites=true&w=majority&appName=Blog"
-      );
+      client = await MongoClient.connect(process.env.MONGODB_URI); // Użycie zmiennej środowiskowej
     } catch (error) {
       res.status(500).json({ message: "Could not connect to database" });
       return;
@@ -40,7 +38,7 @@ async function handler(req, res) {
       newMessage.id = result.insertedId;
     } catch (error) {
       client.close();
-      res.status(500).json({ message: "Storing message fialed" });
+      res.status(500).json({ message: "Storing message failed" });
       return;
     }
 
