@@ -53,5 +53,10 @@ export function getAllPosts(): Post[] {
     const ad = new Date(a.date).getTime();
     const bd = new Date(b.date).getTime();
     return bd - ad;
-  })
+  });
+}
+
+export function getFeaturedPosts(): Post[] {
+  const allPosts = getAllPosts();
+  return allPosts.filter((post) => post.isFeatured);
 }
