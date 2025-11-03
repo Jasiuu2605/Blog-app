@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { get } from 'node:http';
 
 export type PostMeta = {
   title: string;
@@ -22,7 +23,6 @@ export function getPostsFiles(): string[] {
 }
 
 export function getPostData(postIdentifier: string): Post {
-
   const postSlug = postIdentifier.replace(/\.md$/, '');
   const filePath = path.join(postsDirectory, `${postSlug}.md`);
   const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -43,4 +43,15 @@ export function getPostData(postIdentifier: string): Post {
     ...meta,
     content,
   };
+}
+
+export function getAllPosts(): Post[] {
+  const postFiles = getPostsFiles();
+  const allPosts = postFiles.map(getPostData);
+
+  return allPosts.sort((a, b) => {
+    const ad = new Date(a.date).getTime();
+    const bd = new Date(b.date).getTime();
+    return bd - ad;
+  })
 }
