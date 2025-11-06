@@ -1,12 +1,10 @@
-import PostsGrid, { type PostsGridProps } from 'components/posts/posts-grid';
-
+import PostsGrid from '../posts/posts-grid';
 import classes from './featured-posts.module.css';
+import type { PostMeta } from '../../lib/post-util';
 
-export type FeaturedPostsProps = {
-  posts: PostsGridProps['posts'];
-};
+export type FeaturedPostsProps = { posts: PostMeta[] };
 
-function FeaturedPosts({ posts }: FeaturedPostsProps) {
+export default function FeaturedPosts({ posts }: FeaturedPostsProps) {
   return (
     <section className={classes.latest}>
       <h2>Featured Posts</h2>
@@ -14,5 +12,3 @@ function FeaturedPosts({ posts }: FeaturedPostsProps) {
     </section>
   );
 }
-
-export default FeaturedPosts;

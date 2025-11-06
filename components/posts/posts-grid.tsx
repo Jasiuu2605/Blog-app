@@ -1,9 +1,10 @@
 import PostItem, { type PostItemProps } from './post-item';
+import { PostMeta } from 'lib/post-util';
 
 import classes from './posts-grid.module.css';
 
 export type PostsGridProps = {
-  posts: PostItemProps['post'][];
+  posts: PostMeta[];
 };
 
 function PostsGrid({ posts }: PostsGridProps) {

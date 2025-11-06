@@ -6,7 +6,7 @@ import classes from './post-item.module.css';
 export type PostItemProps = {
   post: {
     title: string;
-    image: string;
+    image?: string;
     excerpt: string;
     date: string;
     slug: string;
