@@ -5,50 +5,60 @@ import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import classes from './post-content.module.css';
 import PostHeader from './post-header';
+import type { PostMeta } from '../../../lib/post-util';
 
-function PostContent({ post }) {
-  const imagePath = `/images/posts/${post.slug}/${post.image}`;
+export type PostContentProps = {
+  post: PostMeta & { content: string };
+};
 
-  const components = {
-    p({ node, children }) {
-      // <p><img .../></p> => wyrenderuj responsywnie obraz
+export default function PostContent({ post }: PostContentProps) {
+  const imagePath = `/images/posts/${post.slug}/${post.image ?? ''}`;
+
+  // 🔴 WAŻNE: oznaczamy components jako `any`,
+  // żeby TS nie próbował nadmiernie dopasowywać typów p/code do definicji z react-markdown
+  const components: any = {
+    p(props: any) {
+      const { node, children } = props;
       const first = node?.children?.[0];
+
       if (first && first.tagName === 'img') {
         const img = first;
+        const src: string = img.properties.src;
+        const alt: string | undefined = img.properties.alt;
+
         return (
           <div className={classes.image}>
             <Image
-              src={`/images/posts/${post.slug}/${img.properties.src}`}
-              alt={img.properties.alt || post.title}
+              src={`/images/posts/${post.slug}/${src}`}
+              alt={alt || post.title}
               width={600}
               height={300}
             />
           </div>
         );
       }
+
       return <p>{children}</p>;
     },
 
-    // Najważniejsze: rozróżnij inline vs block
-    code({ inline, className, children, ...props }) {
+    code(props: any) {
+      const { inline, className, children, ...rest } = props;
       const match = /language-(\w+)/.exec(className || '');
 
       if (inline) {
-        // Inline code – zwykły <code>, żadnego <pre>
         return (
-          <code className={className} {...props}>
+          <code className={className} {...rest}>
             {children}
           </code>
         );
       }
 
-      // Blok kodu – syntax highlighter
       return (
         <SyntaxHighlighter
           style={atomDark}
           language={match?.[1]}
           PreTag='div'
-          {...props}
+          {...rest}
         >
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
@@ -63,5 +73,3 @@ function PostContent({ post }) {
     </article>
   );
 }
-
-export default PostContent;
