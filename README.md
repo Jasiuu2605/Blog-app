@@ -1,63 +1,123 @@
-# Blog-app
+# Blog App – Next.js + TypeScript
 
-Blog-app to aplikacja blogowa stworzona przy użyciu [Next.js](https://nextjs.org/). Projekt umożliwia publikowanie postów, wyświetlanie ich szczegółów oraz wysyłanie wiadomości za pomocą formularza kontaktowego.
+Frontend aplikacji blogowej zbudowanej w Next.js (Pages Router), obsługującej markdownowe posty, wyróżnione wpisy, dynamiczne routy oraz formularz kontaktowy z API połączonym z MongoDB. Projekt został w pełni przepisany z JavaScript na TypeScript.
 
-## Funkcjonalności
+---
 
-- **Wyświetlanie postów**: Lista wszystkich postów oraz wyróżnionych postów na stronie głównej.
-- **Szczegóły postów**: Strony szczegółowe dla każdego posta, renderowane na podstawie plików Markdown.
-- **Formularz kontaktowy**: Możliwość wysyłania wiadomości, które są zapisywane w bazie danych MongoDB.
-- **Responsywny design**: Stylizacja z użyciem CSS Modules i zmiennych CSS.
+## Najważniejsze funkcjonalności
+
+### System postów (Markdown + SSG)
+- Lista wszystkich postów
+- Wyróżnione posty na stronie głównej
+- Dynamiczne generowanie stron (`/posts/[slug]`)
+- Statyczna generacja (`getStaticProps`, `getStaticPaths`)
+- Aktualizacja treści dzięki revalidate (ISR)
+- Renderowanie markdowna z:
+  - obrazkami
+  - nagłówkami
+  - blokami kodu (syntax highlighting)
+
+### Integracja z bazą danych
+- API route `/api/contact`
+- Walidacja danych wejściowych
+- Połączenie z MongoDB
+- Zapis wiadomości do kolekcji `messages`
+
+### Formularz kontaktowy
+- Walidacja pól
+- Zgłaszanie błędów
+- Informacje o statusie wysyłki (pending / success / error)
+- Powiadomienia renderowane przez React Portal
+
+### Custom komponenty
+- Layout + MainNavigation
+- Notification (portal)
+- Hero, FeaturedPosts, PostsGrid
+- PostContent (render markdown + obsługa obrazków)
+
+---
 
 ## Technologie
 
-- **Next.js**: Framework Reacta z obsługą SSR i SSG.
-- **React**: Biblioteka do budowy interfejsów użytkownika.
-- **MongoDB**: Baza danych do przechowywania wiadomości z formularza kontaktowego.
-- **Gray-matter**: Parser plików Markdown do ekstrakcji metadanych.
-- **React Markdown**: Renderowanie treści Markdown w React.
-- **React Syntax Highlighter**: Podświetlanie składni w kodzie.
+- Next.js 13 (Pages Router)
+- TypeScript
+- React 18
+- React Markdown
+- Syntax Highlighter
+- CSS Modules
+- MongoDB (API route)
+- Next/Image (optymalizacja obrazów)
+- gray-matter (parsowanie frontmatter)
+
+---
 
 ## Struktura projektu
 
-- `components/`: Komponenty Reacta, takie jak nawigacja, posty, formularz kontaktowy.
-- `pages/`: Strony aplikacji, w tym dynamiczne strony postów i API.
-- `lib/`: Funkcje pomocnicze, np. do obsługi plików Markdown.
-- `posts/`: Pliki Markdown z treścią postów.
-- `styles/`: Globalne style CSS.
+Blog-app/
+ ├── components/
+ │   ├── contact/
+ │   ├── home-page/
+ │   ├── layout/
+ │   ├── posts/
+ │   └── ui/
+ ├── lib/
+ │   └── post-util.ts
+ ├── pages/
+ │   ├── api/contact.ts
+ │   ├── posts/[slug].tsx
+ │   ├── posts/index.tsx
+ │   ├── _app.tsx
+ │   ├── _document.tsx
+ │   └── index.tsx
+ ├── posts/ (pliki .md)
+ ├── public/images/
+ ├── styles/globals.css
+ └── tsconfig.json
 
-## Jak uruchomić projekt?
+---
 
-1. Zainstaluj zależności:
+## Instalacja
 
-   ```bash
+1. Klonuj repozytorium:
+   git clone <URL_REPO>
+   cd blog-app
+
+2. Instalacja zależności:
    npm install
-   ```
 
-2. Uruchom serwer deweloperski:
+3. Dodanie zmiennych środowiskowych (`.env.local`):
+   MONGODB_URI="TWÓJ_CONNECTION_STRING"
 
-   ```bash
+4. Uruchom projekt:
    npm run dev
-   ```
 
-3. Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce.
+Aplikacja dostępna pod:
+http://localhost:3000
 
-## Konfiguracja bazy danych
+---
 
-Aby aplikacja mogła zapisywać wiadomości z formularza kontaktowego, skonfiguruj połączenie z MongoDB w pliku `.env.local`:
+## Backend API
 
-```
-MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority
-```
+Next.js API Routes (wbudowane backendowe funkcje).
 
-## Deployment
+Endpointy:
+- POST `/api/contact` — zapis wiadomości użytkownika do MongoDB
 
-Aplikację można wdrożyć na platformie [Vercel](https://vercel.com/), która jest natywnym środowiskiem dla Next.js.
+---
+
+## Decyzje projektowe (skrócone)
+
+- Next.js Pages Router — prostsze SSG/ISR pod bloga
+- TypeScript — większa niezawodność i czytelność
+- Markdown zamiast CMS — maksymalna wydajność i prostota
+- gray-matter — automatyczne parsowanie danych posta
+- React Markdown + syntax highlighter — renderowanie treści technicznej
+- Portal dla powiadomień — izolacja UI i lepsza semantyka
+
+---
 
 ## Autor
-
-Projekt został stworzony przez Jana Banczerowskiego.
+Jan Banczerowski
 
 ## Licencja
-
-Ten projekt jest dostępny na licencji MIT.
+MIT
