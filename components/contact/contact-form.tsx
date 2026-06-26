@@ -38,7 +38,7 @@ export default function ContactForm() {
   const [enteredName, setEnteredName] = useState<string>('');
   const [enteredMessage, setEnteredMessage] = useState<string>('');
 
-  const [requestStatus, setRequestStatus] = useState<RequestStatus>(null); 
+  const [requestStatus, setRequestStatus] = useState<RequestStatus>(null);
   const [requestError, setRequestError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -105,7 +105,21 @@ export default function ContactForm() {
 
   return (
     <section className={classes.contact}>
-      <h1>How can I help you?</h1>
+      <div className={classes.intro}>
+        <span>Contact</span>
+        <h1>Want to talk about frontend?</h1>
+        <p>
+          Use this form to send a message about the project, feedback on the
+          blog, or ideas for future improvements.
+        </p>
+
+        <ul>
+          <li>Project feedback</li>
+          <li>Frontend questions</li>
+          <li>Collaboration ideas</li>
+        </ul>
+      </div>
+
       <form className={classes.form} onSubmit={sendMessageHandler}>
         <div className={classes.controls}>
           <div className={classes.control}>

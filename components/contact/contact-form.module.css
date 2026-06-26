@@ -1,22 +1,66 @@
 .contact {
+    display: grid;
+    gap: var(--size-8);
     margin: var(--size-16) auto;
-    background-color: #ffffff;
-    border: 1px solid rgba(29, 41, 36, 0.08);
-    max-width: 50rem;
-    padding: var(--size-5);
-    box-shadow: var(--shadow-soft);
-    width: min(100% - 2rem, 50rem);
+    max-width: var(--max-width);
+    width: min(100% - 2rem, var(--max-width));
 }
 
-.contact h1 {
+.intro {
+    background-color: var(--color-grey-900);
+    color: #ffffff;
+    padding: var(--size-6);
+}
+
+.intro span {
+    color: var(--color-primary-200);
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--size-3);
+    text-transform: uppercase;
+}
+
+.intro h1 {
+    color: #ffffff;
     font-size: clamp(2rem, 5vw, 3.75rem);
     line-height: 1;
-    margin: 0 0 var(--size-8);
+    margin: 0;
+}
+
+.intro p {
+    color: var(--color-grey-200);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin: var(--size-4) 0 var(--size-6);
+}
+
+.intro ul {
+    display: grid;
+    gap: var(--size-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.intro li {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--color-grey-100);
+    font-weight: 800;
+    padding-top: var(--size-3);
+}
+
+.form {
+    background-color: #ffffff;
+    border: 1px solid rgba(29, 41, 36, 0.08);
+    box-shadow: var(--shadow-soft);
+    padding: var(--size-5);
 }
 
 .form label {
-    display: block;
     color: var(--color-grey-700);
+    display: block;
     font-size: 0.88rem;
     font-weight: 800;
     margin: 0 0 var(--size-2);
@@ -24,18 +68,18 @@
 
 .form input,
 .form textarea {
-    font: inherit;
-    padding: 0.85rem 1rem;
-    width: 100%;
-    border: 1px solid var(--color-grey-200);
     background-color: var(--color-grey-50);
+    border: 1px solid var(--color-grey-200);
     color: var(--color-grey-900);
+    font: inherit;
     outline: none;
+    padding: 0.85rem 1rem;
     resize: none;
     transition:
         border-color 160ms ease,
         box-shadow 160ms ease,
         background-color 160ms ease;
+    width: 100%;
 }
 
 .form input:focus,
@@ -46,15 +90,15 @@
 }
 
 .controls {
-    display: flex;
     column-gap: var(--size-4);
+    display: flex;
     flex-wrap: wrap;
 }
 
 .control {
     flex: 1;
-    min-width: 10rem;
     margin-bottom: var(--size-4);
+    min-width: 10rem;
 }
 
 .actions {
@@ -82,10 +126,12 @@
 
 @media (min-width: 768px) {
     .contact {
-        padding: var(--size-8);
+        align-items: stretch;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     }
 
-    .contact h1 {
-        max-width: 36rem;
+    .intro,
+    .form {
+        padding: var(--size-8);
     }
 }
