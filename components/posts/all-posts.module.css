@@ -143,10 +143,33 @@
   box-shadow: 0 0 0 4px rgba(31, 146, 127, 0.12);
 }
 
-.search p {
+.searchMeta {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-3);
+  justify-content: space-between;
+  margin-top: var(--size-3);
+}
+
+.searchMeta p {
   color: var(--color-grey-500);
   font-size: 0.9rem;
-  margin: var(--size-3) 0 0;
+  margin: 0;
+}
+
+.searchMeta button {
+  background-color: transparent;
+  border: 0;
+  color: var(--color-primary-700);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 0;
+}
+
+.searchMeta button:hover,
+.searchMeta button:focus {
+  color: var(--color-primary-500);
 }
 
 .empty {

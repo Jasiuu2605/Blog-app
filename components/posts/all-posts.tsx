@@ -14,6 +14,13 @@ export default function AllPosts({ posts }: AllPostsProps) {
   const featuredPosts = posts.filter((post) => post.isFeatured).length;
   const latestPostYear = new Date(posts[0]?.date ?? '').getFullYear();
 
+  const hasActiveFilters = searchTerm.trim() !== '' || selectedTopic !== 'All';
+
+  function clearFiltersHandler() {
+    setSearchTerm('');
+    setSelectedTopic('All');
+  }
+
   const topics = useMemo(() => {
     const uniqueTopics = new Set(posts.flatMap((post) => post.tags));
 
@@ -91,9 +98,17 @@ export default function AllPosts({ posts }: AllPostsProps) {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
-        <p>
-          Showing {filteredPosts.length} of {posts.length} posts
-        </p>
+        <div className={classes.searchMeta}>
+          <p>
+            Showing {filteredPosts.length} of {posts.length} posts
+          </p>
+
+          {hasActiveFilters && (
+            <button type='button' onClick={clearFiltersHandler}>
+              Clear filters
+            </button>
+          )}
+        </div>
       </div>
 
       {filteredPosts.length > 0 ? (
