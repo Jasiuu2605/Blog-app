@@ -9,12 +9,13 @@ export type PostItemProps = {
     image?: string;
     excerpt: string;
     date: string;
+    readingTime: number;
     slug: string;
   };
 };
 
 function PostItem({ post }: PostItemProps) {
-  const { title, image, excerpt, date, slug } = post;
+  const { title, image, excerpt, date, readingTime, slug } = post;
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -39,7 +40,10 @@ function PostItem({ post }: PostItemProps) {
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
-          <time>{formattedDate}</time>
+          <div className={classes.meta}>
+            <time>{formattedDate}</time>
+            <span>{readingTime} min read</span>
+          </div>
           <p>{excerpt}</p>
         </div>
       </Link>

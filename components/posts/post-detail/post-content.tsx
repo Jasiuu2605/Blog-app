@@ -69,6 +69,7 @@ export default function PostContent({ post }: PostContentProps) {
   return (
     <article className={classes.content}>
       <PostHeader title={post.title} image={imagePath} />
+      <p className={classes.readingTime}>{post.readingTime} min read</p>
       <ReactMarkdown components={components}>{post.content}</ReactMarkdown>
     </article>
   );

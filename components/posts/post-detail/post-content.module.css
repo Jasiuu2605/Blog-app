@@ -13,6 +13,15 @@
     color: var(--color-grey-700);
 }
 
+.readingTime {
+    color: var(--color-primary-700);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin: 0 0 var(--size-6);
+    text-transform: uppercase;
+}
+
 .content h2,
 .content h3 {
     margin-top: var(--size-8);

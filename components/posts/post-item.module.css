@@ -53,13 +53,26 @@
     margin: 0 0 var(--size-2);
 }
 
-.content time {
+.meta {
+    align-items: center;
     color: var(--color-primary-700);
+    display: flex;
+    flex-wrap: wrap;
     font-size: 0.83rem;
     font-weight: 800;
+    gap: var(--size-2);
     letter-spacing: 0.05em;
     margin-bottom: var(--size-4);
     text-transform: uppercase;
+}
+
+.meta span::before {
+    content: "/";
+    margin-right: var(--size-2);
+}
+
+.content time {
+    color: var(--color-primary-700);
 }
 
 .content p {

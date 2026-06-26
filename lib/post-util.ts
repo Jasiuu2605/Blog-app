@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { get } from 'node:http';
 
 export type PostMeta = {
   title: string;
@@ -9,6 +8,7 @@ export type PostMeta = {
   date: string;
   image?: string;
   isFeatured?: boolean;
+  readingTime: number;
   slug: string;
 };
 
@@ -17,6 +17,13 @@ export type Post = PostMeta & {
 };
 
 const postsDirectory = path.join(process.cwd(), 'posts');
+const wordsPerMinute = 200;
+
+function calculateReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
+
+  return Math.max(1, Math.ceil(words / wordsPerMinute));
+}
 
 export function getPostsFiles(): string[] {
   return fs.readdirSync(postsDirectory).filter((file) => file.endsWith('.md'));
@@ -36,6 +43,7 @@ export function getPostData(postIdentifier: string): Post {
     date: String(raw.date),
     ...(raw.image ? { image: String(raw.image) } : {}), // tylko jeśli istnieje
     ...(raw.isFeatured !== undefined ? { isFeatured: !!raw.isFeatured } : {}),
+    readingTime: calculateReadingTime(content),
     slug: postSlug,
   };
 
