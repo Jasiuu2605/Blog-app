@@ -37,6 +37,17 @@ export default function AllPosts({ posts }: AllPostsProps) {
         </dl>
       </header>
 
+      <div className={classes.topics}>
+        <span>Browse by topic</span>
+        <ul>
+          <li>Next.js</li>
+          <li>React</li>
+          <li>TypeScript</li>
+          <li>CSS Modules</li>
+          <li>Performance</li>
+        </ul>
+      </div>
+
       <PostsGrid posts={posts} />
     </section>
   );
