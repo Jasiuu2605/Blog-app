@@ -9,23 +9,33 @@ export type AllPostsProps = {
 
 export default function AllPosts({ posts }: AllPostsProps) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState('All');
 
   const featuredPosts = posts.filter((post) => post.isFeatured).length;
   const latestPostYear = new Date(posts[0]?.date ?? '').getFullYear();
 
+  const topics = useMemo(() => {
+    const uniqueTopics = new Set(posts.flatMap((post) => post.tags));
+
+    return ['All', ...Array.from(uniqueTopics).sort()];
+  }, [posts]);
+
   const filteredPosts = useMemo(() => {
     const normalizedSearchTerm = searchTerm.trim().toLowerCase();
 
-    if (!normalizedSearchTerm) {
-      return posts;
-    }
-
     return posts.filter((post) => {
-      const searchableContent = `${post.title} ${post.excerpt}`.toLowerCase();
+      const matchesSearch =
+        !normalizedSearchTerm ||
+        `${post.title} ${post.excerpt}`
+          .toLowerCase()
+          .includes(normalizedSearchTerm);
 
-      return searchableContent.includes(normalizedSearchTerm);
+      const matchesTopic =
+        selectedTopic === 'All' || post.tags.includes(selectedTopic);
+
+      return matchesSearch && matchesTopic;
     });
-  }, [posts, searchTerm]);
+  }, [posts, searchTerm, selectedTopic]);
 
   return (
     <section className={classes.posts}>
@@ -58,11 +68,17 @@ export default function AllPosts({ posts }: AllPostsProps) {
       <div className={classes.topics}>
         <span>Browse by topic</span>
         <ul>
-          <li>Next.js</li>
-          <li>React</li>
-          <li>TypeScript</li>
-          <li>CSS Modules</li>
-          <li>Performance</li>
+          {topics.map((topic) => (
+            <li key={topic}>
+              <button
+                type='button'
+                className={topic === selectedTopic ? classes.activeTopic : ''}
+                onClick={() => setSelectedTopic(topic)}
+              >
+                {topic}
+              </button>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -84,7 +100,7 @@ export default function AllPosts({ posts }: AllPostsProps) {
         <PostsGrid posts={filteredPosts} />
       ) : (
         <p className={classes.empty}>
-          No posts found. Try a different search term.
+          No posts found. Try a different search term or topic.
         </p>
       )}
     </section>

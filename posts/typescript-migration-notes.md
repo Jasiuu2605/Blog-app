@@ -1,9 +1,13 @@
 ---
-title: "Migrating a Course Project to TypeScript"
-date: "2026-06-20"
+title: 'Migrating a Course Project to TypeScript'
+date: '2026-06-20'
 image: typescript-migration-notes.png
 excerpt: A few practical notes from converting a small Next.js blog from JavaScript to TypeScript without making the code harder to read.
 isFeatured: true
+tags:
+  - TypeScript
+  - Next.js
+  - React
 ---
 
 Migrating a small project to TypeScript is not only about adding types. It is also a good moment to understand the shape of the application.

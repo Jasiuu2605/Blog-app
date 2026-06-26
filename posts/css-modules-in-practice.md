@@ -4,6 +4,9 @@ date: "2026-06-12"
 image: css-modules-in-practice.png
 excerpt: CSS Modules are simple, but they work well for small and medium React projects when styles stay close to the components they belong to.
 isFeatured: false
+tags:
+  - CSS Modules
+  - Frontend
 ---
 
 CSS Modules are a good fit for this blog because the styling needs are local and component-based.

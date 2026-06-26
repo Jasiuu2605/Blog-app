@@ -92,12 +92,23 @@
   padding: 0;
 }
 
-.topics li {
+.topics button {
   background-color: var(--color-primary-50);
+  border: 0;
   color: var(--color-primary-700);
   font-size: 0.9rem;
   font-weight: 800;
   padding: 0.5rem 0.75rem;
+}
+
+.topics button:hover,
+.topics button:focus {
+  background-color: var(--color-primary-100);
+}
+
+.topics .activeTopic {
+  background-color: var(--color-grey-900);
+  color: #ffffff;
 }
 
 .search {

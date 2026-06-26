@@ -10,6 +10,7 @@ export type PostMeta = {
   isFeatured?: boolean;
   readingTime: number;
   slug: string;
+  tags: string[];
 };
 
 export type Post = PostMeta & {
@@ -45,6 +46,7 @@ export function getPostData(postIdentifier: string): Post {
     ...(raw.isFeatured !== undefined ? { isFeatured: !!raw.isFeatured } : {}),
     readingTime: calculateReadingTime(content),
     slug: postSlug,
+    tags: Array.isArray(raw.tags) ? raw.tags.map(String) : [],
   };
 
   return {
