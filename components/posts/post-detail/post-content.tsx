@@ -70,6 +70,13 @@ export default function PostContent({ post }: PostContentProps) {
     <article className={classes.content}>
       <PostHeader title={post.title} image={imagePath} />
       <p className={classes.readingTime}>{post.readingTime} min read</p>
+      {post.tags.length > 0 && (
+        <ul className={classes.tags}>
+          {post.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+      )}
       <ReactMarkdown components={components}>{post.content}</ReactMarkdown>
     </article>
   );

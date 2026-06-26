@@ -10,12 +10,13 @@ export type PostItemProps = {
     excerpt: string;
     date: string;
     readingTime: number;
+    tags: string[];
     slug: string;
   };
 };
 
 function PostItem({ post }: PostItemProps) {
-  const { title, image, excerpt, date, readingTime, slug } = post;
+  const { title, image, excerpt, date, readingTime, tags, slug } = post;
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -44,6 +45,13 @@ function PostItem({ post }: PostItemProps) {
             <time>{formattedDate}</time>
             <span>{readingTime} min read</span>
           </div>
+          {tags.length > 0 && (
+            <ul className={classes.tags}>
+              {tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          )}
           <p>{excerpt}</p>
         </div>
       </Link>
