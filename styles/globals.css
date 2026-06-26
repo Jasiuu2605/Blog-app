@@ -1,35 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto&family=Source+Sans+Pro:wght@300&display=swap');
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  --color-grey-50: hsl(265, 55%, 96%);
-  --color-grey-100: hsl(265, 19%, 88%);
-  --color-grey-200: hsl(265, 7%, 70%);
-  --color-grey-300: hsl(265, 6%, 66%);
-  --color-grey-400: hsl(265, 4%, 57%);
-  --color-grey-500: hsl(265, 3%, 53%);
-  --color-grey-600: hsl(265, 4%, 42%);
-  --color-grey-700: hsl(265, 4%, 31%);
-  --color-grey-800: hsl(276, 5%, 20%);
-  --color-grey-900: hsl(280, 5%, 13%);
+  --color-grey-50: #f8faf9;
+  --color-grey-100: #edf1ef;
+  --color-grey-200: #d9e0dd;
+  --color-grey-300: #bbc7c2;
+  --color-grey-400: #8b9993;
+  --color-grey-500: #65736d;
+  --color-grey-600: #47554f;
+  --color-grey-700: #2f3d37;
+  --color-grey-800: #1d2924;
+  --color-grey-900: #101915;
 
-  --color-primary-50: #c8b3ce;
-  --color-primary-100: #a07aaa;
-  --color-primary-200: #884c97;
-  --color-primary-300: #843897;
-  --color-primary-400: #732392;
-  --color-primary-500: #5a097a;
-  --color-primary-600: #480264;
-  --color-primary-700: #3d0264;
+  --color-primary-50: #e8f8f3;
+  --color-primary-100: #c3eee2;
+  --color-primary-200: #8bdac8;
+  --color-primary-300: #45b8a2;
+  --color-primary-400: #1f927f;
+  --color-primary-500: #147565;
+  --color-primary-600: #115f54;
+  --color-primary-700: #0f4e46;
 
-  --color-success-100: #a2f0bc;
-  --color-success-500: #12bd4b;
+  --color-accent-100: #ffe8d8;
+  --color-accent-500: #e56a35;
 
-  --color-error-100: #f1acc9;
-  --color-error-500: #a10c4a;
+  --color-success-100: #dbf7e7;
+  --color-success-500: #11804d;
+
+  --color-error-100: #ffe0e0;
+  --color-error-500: #c53636;
+
+  --shadow-soft: 0 18px 50px rgba(16, 25, 21, 0.08);
+  --shadow-card: 0 10px 30px rgba(16, 25, 21, 0.1);
+  --max-width: 72rem;
 
   --size-1: 0.25rem;
   --size-2: 0.5rem;
@@ -43,22 +48,37 @@ body {
   --size-40: 10rem;
 
   margin: 0;
-  background-color: var(--color-grey-500);
-  color: #252525;
-  font-family: 'Roboto', sans-serif;
+  background:
+    linear-gradient(180deg, rgba(195, 238, 226, 0.5) 0, transparent 22rem),
+    var(--color-grey-50);
+  color: var(--color-grey-900);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  min-height: 100vh;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Oswald', 'Roboto', sans-serif;
+  color: var(--color-grey-900);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  letter-spacing: 0;
 }
 
 a {
+  color: inherit;
   text-decoration: none;
 }
 
 button {
   font: inherit;
   cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
