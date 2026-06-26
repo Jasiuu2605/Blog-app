@@ -5,8 +5,9 @@ import FeaturedPosts from '../components/home-page/featured-posts';
 import { getFeaturedPosts } from '../lib/post-util';
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { PostMeta } from '../lib/post-util';
+import Topics from '../components/home-page/topics';
 
-type HomePageProps = { posts: PostMeta[] }; // 👈 zmieniamy nazwę z "Props" na "HomePageProps"
+type HomePageProps = { posts: PostMeta[] };
 
 export default function HomePage({
   posts,
@@ -18,8 +19,8 @@ export default function HomePage({
         <meta name='description' content='I post about web development' />
       </Head>
       <Hero />
+      <Topics />
       <FeaturedPosts posts={posts} />{' '}
-      {/* 👈 tutaj przekazujemy TABLICĘ postów */}
     </Fragment>
   );
 }
